@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Joystick
+  - Tree
+  - Drop_wood
+  - Flame
+  - Arrow
+  - Enemy
+  - Player FOV
+  - Spawner
+  - Mouse Lighter
+  - Drop Woods Text
+  - Game Manager
+  - FlashLight
+  - GameOverMenu
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Enemies
+  - Important objects
+  - Trees
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2724342257
+    locked: 0
+  - name: Trees
+    uniqueID: 3316720491
+    locked: 0
+  - name: Important objects
+    uniqueID: 3917458689
+    locked: 0
+  - name: UI
+    uniqueID: 3045625709
+    locked: 0
