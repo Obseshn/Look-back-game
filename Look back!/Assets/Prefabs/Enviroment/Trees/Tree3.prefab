@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -978246805
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2487152513582166325, guid: 0badc574fbd4bfd4cba274b5d4c58d98,
     type: 3}
@@ -98,6 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   woodDrop: {fileID: 361321110748245363, guid: 927536e4b8d98574dab66dcaeab781af, type: 3}
+  woodParticle: {fileID: 8983236242993374548, guid: a32bc0468fb546f4c9c77b1cbab55d51,
+    type: 3}
   player: {fileID: 8555880535570310304, guid: 3bb5c49a0d7eeed4c9db9b7e9615379e, type: 3}
 --- !u!58 &-2643758516239793980
 CircleCollider2D:

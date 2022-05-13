@@ -9,9 +9,11 @@ public class FlamePowerText : MonoBehaviour
     private Flame flamePower;
     private float flameCounter;
 
+    private string TAG_Flame = "Flame";
+
     private void Start()
     {
-        flamePower = GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>();
+        flamePower = GameObject.FindGameObjectWithTag(TAG_Flame).GetComponent<Flame>();
     }
     private void Update()
     {

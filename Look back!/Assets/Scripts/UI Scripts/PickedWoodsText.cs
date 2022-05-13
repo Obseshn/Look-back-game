@@ -5,13 +5,18 @@ using UnityEngine.UI;
 
 public class PickedWoodsText : MonoBehaviour
 {
-    private float countOfWoods;
     public Text pickedWoodsText;
+
+
+    private float countOfWoods;
+
     private PlayerController playerController;
+
+    private string TAG_Player = "Player";
 
     private void Start()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerController = GameObject.FindGameObjectWithTag(TAG_Player).GetComponent<PlayerController>();
     }
 
     private void Update()

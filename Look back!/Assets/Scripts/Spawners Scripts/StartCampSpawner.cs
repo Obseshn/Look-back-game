@@ -6,6 +6,7 @@ public class StartCampSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject flame;
+
     private float border = 30f;
     private float playerOffset = 4f;
     

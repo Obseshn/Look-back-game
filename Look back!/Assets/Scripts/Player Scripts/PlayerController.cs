@@ -1,56 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour
 {
+    // Getted objects and variables: 
+    public GameObject ParticleHolder;
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Transform attackCirclePos;
+    [SerializeField] private float attackCircleRadius;
+    [SerializeField] private LayerMask Trees;
     private Camera cam;
-    public int pickedWoods;
     private GameObject arrow;
+    private PlayerFOV fieldOfView;
+    private Animator mainCamAnim;
+    private GameObject dropWoodText;
+    private Rigidbody2D flameRb;
+    private Flame flame;
+
+
+
+
+    // Player variables 
+    public int pickedWoods;
+
     public int _pickedWoods
     {
         get { return pickedWoods; }
     }
 
-
-    private PlayerFOV fieldOfView;
-    [SerializeField] private Animator playerAnimator;
-    private Animator mainCamAnim;
     private float moveSpeed = 4f;
-
-
-    [SerializeField] private Transform attackCirclePos;
-    [SerializeField] private float attackCircleRadius;
-    [SerializeField] private LayerMask Trees;
     private float attackCD = 1f;
     private float timeBtwAttack;
     private float flameRadius = 7f;
     private float stealCD = 10f;
     private float stealCDTimer;
-
-
-    // Player borders
+    private float damage = 5;
     private float moveBorder = 70f;
-
-
-    private int damage = 5;
-
-    private Rigidbody2D playerRb;
-    private GameObject dropWoodText;
-
-    private Rigidbody2D flameRb;
-    private Flame flame;
-
     private Vector2 movement;
     private Vector2 mousePos;
 
-    private Color treeColor;
+    private AudioSource playerAudio;
+    private Rigidbody2D playerRb;
 
+    // TAGS and other
     private string WALK_COND_NAME = "isWalking";
     private string ATTACK_COND_NAME = "Attack";
-
-    
-
+    private Color treeColor;
+    private int FlameSoundNumber = 4;
 
 
     private void Awake()
@@ -63,6 +61,7 @@ public class PlayerController : MonoBehaviour
         mainCamAnim = cam.GetComponent<Animator>();
         fieldOfView = GameObject.FindGameObjectWithTag("Player FOV").GetComponent<PlayerFOV>();
         dropWoodText = GameObject.FindGameObjectWithTag("Drop Woods Text");
+        playerAudio = gameObject.GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -75,6 +74,8 @@ public class PlayerController : MonoBehaviour
         {
             stealCDTimer -= Time.deltaTime;
         }
+
+
         // Movement code start
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -85,13 +86,22 @@ public class PlayerController : MonoBehaviour
         if (movement != Vector2.zero)
         {
             playerAnimator.SetBool(WALK_COND_NAME, true);
+            ParticleHolder.SetActive(true);
+            playerAudio.enabled = true;
+            playerAudio.volume = 0.5f;
+            
+
         }
         else
         {
             playerAnimator.SetBool(WALK_COND_NAME, false);
+            ParticleHolder.SetActive(false);
+            playerAudio.volume = 0f;
+            playerAudio.enabled = false;
         }
         // Movement code end
 
+        // FOV(not mouse ligter) code
         fieldOfView.SetAimDirection(aimDir);
         fieldOfView.SetOrigin(transform.position);
 
@@ -115,14 +125,21 @@ public class PlayerController : MonoBehaviour
         // Drop wood and arrow active conditions start
         if (Vector2.Distance(playerRb.position, flameRb.position) < flameRadius)
         {
+            FindObjectOfType<AudioManager>().sounds[FlameSoundNumber].volume = 0f;
+
             if (Input.GetKeyDown(KeyCode.Q) && pickedWoods > 0)
             {
                 DropWoods(pickedWoods);
             }
+
             arrow.SetActive(false);
             dropWoodText.SetActive(true);
         }
-        else if(Vector2.Distance(playerRb.position, flameRb.position) > flameRadius) {
+        else if (Vector2.Distance(playerRb.position, flameRb.position) > flameRadius) 
+        {
+            FindObjectOfType<AudioManager>().sounds[FlameSoundNumber].volume = 0.3f;
+            FindObjectOfType<AudioManager>().PlaySound("Flame_Sound");
+
             arrow.SetActive(true);
             dropWoodText.SetActive(false);
         }
@@ -134,6 +151,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Border checker start
         if (transform.position.x >= moveBorder)
         {
             Vector3 tempXPos = new Vector3(moveBorder, transform.position.y, transform.position.z);
@@ -157,6 +175,8 @@ public class PlayerController : MonoBehaviour
             Vector3 tempYPos = new Vector3(transform.position.x, -moveBorder, transform.position.z);
             transform.position = tempYPos;
         }
+        // Border checker end
+
 
         playerRb.MovePosition(playerRb.position + movement * moveSpeed * Time.fixedDeltaTime);
         CalculatePlayerRotation(); // Rotate player
@@ -171,6 +191,7 @@ public class PlayerController : MonoBehaviour
 
     private void DropWoods(int woods)
     {
+        FindObjectOfType<AudioManager>().PlaySound("Drop_Woods");
         flame.IncreaseFlame(woods);
         pickedWoods = 0;
         Debug.Log("Woods have been droped");
@@ -194,6 +215,7 @@ public class PlayerController : MonoBehaviour
             treesToDamage[i].GetComponent<Tree>().TakeDamage(damage);
         }
         
+
         StartCoroutine(AttackDuration());
     }
 
@@ -202,7 +224,10 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool(ATTACK_COND_NAME, true);
         mainCamAnim.Play("MainCamera_Shake");
         
+
         yield return new WaitForSeconds(1f);
+        
+
         playerAnimator.SetBool(ATTACK_COND_NAME, false);
     }
 
@@ -213,7 +238,7 @@ public class PlayerController : MonoBehaviour
             treeColor = collision.gameObject.GetComponent<SpriteRenderer>().material.color;
             treeColor.a = 0.6f;
             collision.gameObject.GetComponent<SpriteRenderer>().material.color = treeColor;
-        }
+        } // Decrease tree opacity
 
         if (pickedWoods > 0 && stealCDTimer <= 0)
         {
@@ -223,7 +248,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Enemy steal your woods!");
                 stealCDTimer = stealCD;
             }
-        }
+        } // Let enemy steal woods
         
 
 
@@ -235,20 +260,21 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Tree"))
         {
             treeColor.a = 1f;
-            collision.gameObject.GetComponent<SpriteRenderer>().material.color = treeColor;
+            collision.gameObject.GetComponent<SpriteRenderer>().material.color = treeColor; // Increase tree opacity in Exit
         }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(attackCirclePos.position, attackCircleRadius);
+        Gizmos.DrawWireSphere(attackCirclePos.position, attackCircleRadius); // Draws attack circle
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Drop_wood"))
         {
+            FindObjectOfType<AudioManager>().PlaySound("Take_Wood");
             pickedWoods++;
             Destroy(collision.gameObject);
         }

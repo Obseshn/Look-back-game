@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    int maxCountOfEnemies = 20;
-    int currentCountOfEnemies;
+    public GameObject[] enemies;
+
+
+    private int maxCountOfEnemies = 20;
+    private int currentCountOfEnemies;
+
     private float spawnXRange = 75f;
     private float spawnYRange = 75f;
-    public GameObject[] enemies;
+    
     
 
     private void Update()
@@ -23,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
    private void SpawnEnemy()
     {
         int randomIndex = Random.Range(0, enemies.Length);
-        Instantiate(enemies[randomIndex], GenerateRandomPosition(), transform.rotation);
+        Instantiate(enemies[randomIndex], GenerateRandomPosition(), transform.rotation, transform.parent);
         Debug.Log("Enemy has been spawned");
     }
 

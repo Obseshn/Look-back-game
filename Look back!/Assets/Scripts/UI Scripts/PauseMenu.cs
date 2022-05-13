@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-    private bool gameOver;
 
-    [SerializeField] private GameObject pauseMenuUI; 
 
+    [SerializeField] private GameObject pauseMenuUI;
+
+    private string SCENEname_MainMenu = "Main Menu";
     
 
     // Update is called once per frame
@@ -47,8 +48,8 @@ public class PauseMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Main Menu");
         GameManager.gameOver = false;
+        SceneManager.LoadScene(SCENEname_MainMenu);
     }
 
     public void Quit()

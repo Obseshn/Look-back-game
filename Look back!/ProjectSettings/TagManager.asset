@@ -17,6 +17,8 @@ TagManager:
   - Game Manager
   - FlashLight
   - GameOverMenu
+  - Particle_Fire
+  - Player_Particle_Holder
   layers:
   - Default
   - TransparentFX
@@ -48,7 +50,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Player
   - 
   m_SortingLayers:
   - name: Default

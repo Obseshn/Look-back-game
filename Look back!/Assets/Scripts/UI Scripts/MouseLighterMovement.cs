@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class MouseLighterMovement : MonoBehaviour
 {
-    private Camera mainCamera;
-    private Vector3 mousePos;
     [SerializeField] private Vector3 offset;
+
+    private Camera mainCamera;
+
+    private Vector3 mousePos;
+
+    private string TAG_MainCamera = "Main Camera";
 
     private void Start()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mainCamera = GameObject.FindGameObjectWithTag(TAG_MainCamera).GetComponent<Camera>();
     }
     private void Update()
     {

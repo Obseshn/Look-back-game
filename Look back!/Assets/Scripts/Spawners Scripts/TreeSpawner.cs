@@ -6,8 +6,12 @@ public class TreeSpawner : MonoBehaviour
 {
     [SerializeField] private int countToSpawn;
     [SerializeField] private GameObject[] trees;
-    private float spawnXRange = 80f;
-    private float spawnYRange = 80f;
+
+    private string TAG_Tree = "Tree";
+
+
+    private float spawnXRange = 70f;
+    private float spawnYRange = 70f;
 
     private void Start()
     {
@@ -17,9 +21,9 @@ public class TreeSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (GameObject.FindGameObjectsWithTag("Tree").Length < countToSpawn)
+        if (GameObject.FindGameObjectsWithTag(TAG_Tree).Length < countToSpawn)
         {
-            SpawnTrees(countToSpawn - GameObject.FindGameObjectsWithTag("Tree").Length);
+            SpawnTrees(countToSpawn - GameObject.FindGameObjectsWithTag(TAG_Tree).Length);
             Debug.Log("New tree has been spawned");
         }
     }
@@ -29,7 +33,7 @@ public class TreeSpawner : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, trees.Length);
-            Instantiate(trees[index], GenerateSpawnPositionXY(), Quaternion.identity);
+            Instantiate(trees[index], GenerateSpawnPositionXY(), Quaternion.identity, transform.parent);
         }
     }
 
