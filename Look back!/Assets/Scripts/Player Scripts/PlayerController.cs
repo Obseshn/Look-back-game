@@ -179,6 +179,16 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         Collider2D[] treesToDamage = Physics2D.OverlapCircleAll(attackCirclePos.position, attackCircleRadius, Trees);
+        if (treesToDamage.Length == 0)
+        {
+            FindObjectOfType<AudioManager>().PlaySound("Axe_Missing");
+            Debug.Log("Axe Miss");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().PlaySound("Axe_Attack");
+            Debug.Log("Axe Attack");
+        }
         for (int i = 0; i < treesToDamage.Length; i++)
         {
             treesToDamage[i].GetComponent<Tree>().TakeDamage(damage);
@@ -191,6 +201,7 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator.SetBool(ATTACK_COND_NAME, true);
         mainCamAnim.Play("MainCamera_Shake");
+        
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool(ATTACK_COND_NAME, false);
     }
