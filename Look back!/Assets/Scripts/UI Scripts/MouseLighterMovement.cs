@@ -10,7 +10,7 @@ public class MouseLighterMovement : MonoBehaviour
 
     private Vector3 mousePos;
 
-    private string TAG_MainCamera = "Main Camera";
+    private string TAG_MainCamera = "MainCamera";
 
     private void Start()
     {
