@@ -9,7 +9,7 @@ public class FlamePowerText : MonoBehaviour
     private Flame flamePower;
     private float flameCounter;
 
-    private string TAG_Flame = "Flame";
+    private readonly string TAG_Flame = "Flame";
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class FlamePowerText : MonoBehaviour
     }
     private void Update()
     {
-        flameCounter = flamePower._flamePower;
+        flameCounter = flamePower.GetFlamePower();
         flameText.text = flameCounter.ToString("0") + "%";
     }
 }

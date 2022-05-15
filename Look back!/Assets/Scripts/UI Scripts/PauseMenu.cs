@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenuUI;
 
-    private string SCENEname_MainMenu = "Main Menu";
+    private readonly string SCENEname_MainMenu = "Main Menu";
     
 
     // Update is called once per frame

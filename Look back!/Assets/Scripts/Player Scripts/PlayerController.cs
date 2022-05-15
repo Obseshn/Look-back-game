@@ -25,19 +25,14 @@ public class PlayerController : MonoBehaviour
     // Player variables 
     public int pickedWoods;
 
-    public int _pickedWoods
-    {
-        get { return pickedWoods; }
-    }
-
-    private float moveSpeed = 4f;
-    private float attackCD = 1f;
+    private readonly float moveSpeed = 4f;
+    private readonly float attackCD = 1f;
     private float timeBtwAttack;
-    private float flameRadius = 7f;
-    private float stealCD = 10f;
+    private readonly float flameRadius = 7f;
+    private readonly float stealCD = 10f;
     private float stealCDTimer;
-    private float damage = 5;
-    private float moveBorder = 70f;
+    private readonly float damage = 5;
+    private readonly float moveBorder = 70f;
     private Vector2 movement;
     private Vector2 mousePos;
 
@@ -45,10 +40,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
 
     // TAGS and other
-    private string WALK_COND_NAME = "isWalking";
-    private string ATTACK_COND_NAME = "Attack";
+    private readonly string WALK_COND_NAME = "isWalking";
+    private readonly string ATTACK_COND_NAME = "Attack";
     private Color treeColor;
-    private int FlameSoundNumber = 4;
+    private readonly int FlameSoundNumber = 4;
 
 
     private void Awake()
@@ -212,7 +207,7 @@ public class PlayerController : MonoBehaviour
         }
         for (int i = 0; i < treesToDamage.Length; i++)
         {
-            treesToDamage[i].GetComponent<Tree>().TakeDamage(damage);
+            treesToDamage[i].GetComponent<TreeObj>().TakeDamage(damage);
         }
         
 

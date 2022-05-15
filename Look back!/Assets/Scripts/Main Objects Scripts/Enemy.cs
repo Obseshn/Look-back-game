@@ -8,17 +8,16 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Animator enemyAnimator;
     [SerializeField] private float activeSpeed;
-    [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float distanceToJump = 5f;
     [SerializeField] private float dashCounter;
     [SerializeField] private float liveTime;
 
 
-    private float enemyFOVDistance = 10f;
-    private float moveSpeed = 2f;
-    private float dashSpeed = 5f;
-    private float dashCoolDown = 5f;
-    private float minLiveTime = 20f;
+    private readonly float enemyFOVDistance = 10f;
+    private readonly float moveSpeed = 2f;
+    private readonly float dashSpeed = 5f;
+    private readonly float dashCoolDown = 5f;
+    private readonly float minLiveTime = 20f;
     
 
     private Vector2 dashTarget;
@@ -28,16 +27,14 @@ public class Enemy : MonoBehaviour
 
     private SpriteRenderer enemySprtRender;
 
-    private Transform playerTrans;
-
     private bool dashActive = false;
     private bool isVisible = false;
     
 
 
     // Animator conditions
-    private string TAG_Attack = "Attack";
-    private string NAME_SOUND_EnemyRoar = "Enemy_Roar";
+    private readonly string TAG_Attack = "Attack";
+    private readonly string NAME_SOUND_EnemyRoar = "Enemy_Roar";
 
 
 
@@ -48,7 +45,6 @@ public class Enemy : MonoBehaviour
         enemyRb = GetComponent<Rigidbody2D>();
         activeSpeed = moveSpeed;
         liveTime = Random.Range(minLiveTime, minLiveTime * 3);
-        playerTrans = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         enemySprtRender = GetComponent<SpriteRenderer>();
         enemySprtRender.enabled = false;
     }

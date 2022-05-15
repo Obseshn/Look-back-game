@@ -7,11 +7,11 @@ public class TreeSpawner : MonoBehaviour
     [SerializeField] private int countToSpawn;
     [SerializeField] private GameObject[] trees;
 
-    private string TAG_Tree = "Tree";
+    private readonly string TAG_Tree = "Tree";
 
 
-    private float spawnXRange = 70f;
-    private float spawnYRange = 70f;
+    private readonly float spawnXRange = 70f;
+    private readonly float spawnYRange = 70f;
 
     private void Start()
     {

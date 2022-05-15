@@ -12,7 +12,7 @@ public class PickedWoodsText : MonoBehaviour
 
     private PlayerController playerController;
 
-    private string TAG_Player = "Player";
+    private readonly string TAG_Player = "Player";
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class PickedWoodsText : MonoBehaviour
 
     private void Update()
     {
-        countOfWoods = playerController._pickedWoods;
+        countOfWoods = playerController.pickedWoods;
         pickedWoodsText.text = countOfWoods.ToString();
     }
 

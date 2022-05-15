@@ -10,7 +10,7 @@ public class CamaraFollow : MonoBehaviour
 
     [SerializeField] [Range(0.01f, 1f)] private float smoothTime;
 
-    private string TAG_Player = "Player";
+    private readonly string TAG_Player = "Player";
 
     private Vector3 velocity = Vector3.zero;
 

@@ -7,11 +7,11 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemies;
 
 
-    private int maxCountOfEnemies = 20;
+    private readonly int maxCountOfEnemies = 20;
     private int currentCountOfEnemies;
 
-    private float spawnXRange = 75f;
-    private float spawnYRange = 75f;
+    private readonly float spawnXRange = 75f;
+    private readonly float spawnYRange = 75f;
     
     
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tree : MonoBehaviour
+public class TreeObj : MonoBehaviour
 {
     public GameObject player;
     public GameObject woodParticle;
@@ -10,17 +10,12 @@ public class Tree : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private GameObject woodDrop;
 
-    private int minimumWoodDrop = 6;
+    private readonly float minimumWoodDrop = 6;
 
 
     private void Start()
     {
         health = Random.Range(20, 30);
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void TakeDamage(float damage)
@@ -42,8 +37,7 @@ public class Tree : MonoBehaviour
 
     private void DropInstantiate()
     {
-        int newDrop = Random.Range(minimumWoodDrop, minimumWoodDrop * 2);
-        player.GetComponent<PlayerController>().pickedWoods += newDrop;
+        float newDrop = Random.Range(minimumWoodDrop, minimumWoodDrop * 2);
         Vector3 position = transform.position;
         for (int i = 0; i < newDrop; i++)
         {

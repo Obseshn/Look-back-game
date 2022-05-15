@@ -7,14 +7,16 @@ public class Flame : MonoBehaviour
     [SerializeField] private float flamePower;
     public float _flamePower
     {
-        get { return flamePower; }
-    }
+        get {
+            return flamePower;
+            }
+    } 
 
     private Animator flameAnimator;
     private ParticleSystem fireParticle;
     private float particleSpeed;
 
-    private string TAG_flamePower = "Flame Power";
+    private readonly string TAG_flamePower = "Flame Power";
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class Flame : MonoBehaviour
             particleSpeed = flamePower / 50f;
             fireParticle.startLifetime = particleSpeed;
             fireParticle.startSpeed = particleSpeed;
+
         }
         
     }
@@ -44,5 +47,8 @@ public class Flame : MonoBehaviour
         Debug.Log("Flame was increased on: " + flamePower);
     }
 
-
+    public float GetFlamePower()
+    {
+        return flamePower;
+    }
 }

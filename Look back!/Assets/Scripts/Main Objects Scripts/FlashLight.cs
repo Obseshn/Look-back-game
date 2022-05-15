@@ -12,8 +12,8 @@ public class FlashLight : MonoBehaviour
 
     private Light pointLight;
 
-    private float lightPowerTime = 0.2f;
-    private float lightPowerCD = 2f;
+    private readonly float lightPowerTime = 0.2f;
+    private readonly float lightPowerCD = 2f;
     private float lightPowerCDtimer;
 
     

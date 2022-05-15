@@ -11,8 +11,8 @@ public class FlameDirectionArrow : MonoBehaviour
     private Rigidbody2D flameRb;
     private Rigidbody2D arrowRb;
 
-    private string TAG_Player = "Player";
-    private string TAG_Flame = "Flame";
+    private readonly string TAG_Player = "Player";
+    private readonly string TAG_Flame = "Flame";
     
 
     private void Start()
