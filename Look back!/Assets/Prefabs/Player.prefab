@@ -292,7 +292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e76b58145159d49b3a04bf3c8dc199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickedWoods: 380
   ParticleHolder: {fileID: 6659007389293386763}
   playerAnimator: {fileID: 8555880535570310301}
   attackCirclePos: {fileID: 8555880536976811808}
@@ -300,6 +299,7 @@ MonoBehaviour:
   Trees:
     serializedVersion: 2
     m_Bits: 1024
+  pickedWoods: 380
 --- !u!82 &5088535389239268958
 AudioSource:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5863ab2abd603f34c9e84edbcc1f58fe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.84402424
   m_Pitch: 1
   Loop: 1
   Mute: 0

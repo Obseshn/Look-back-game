@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
-
+    [SerializeField] private AudioSource playerWalking;
     [SerializeField] private GameObject pauseMenuUI;
 
     private readonly string SCENEname_MainMenu = "Main Menu";

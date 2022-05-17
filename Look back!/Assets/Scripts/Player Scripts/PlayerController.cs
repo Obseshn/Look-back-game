@@ -82,17 +82,15 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetBool(WALK_COND_NAME, true);
             ParticleHolder.SetActive(true);
-            playerAudio.enabled = true;
-            playerAudio.volume = 0.5f;
-            
+            playerAudio.mute = false;
+
 
         }
         else
         {
             playerAnimator.SetBool(WALK_COND_NAME, false);
             ParticleHolder.SetActive(false);
-            playerAudio.volume = 0f;
-            playerAudio.enabled = false;
+            playerAudio.mute = true;
         }
         // Movement code end
 

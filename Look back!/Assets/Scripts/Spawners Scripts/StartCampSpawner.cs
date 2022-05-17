@@ -7,8 +7,8 @@ public class StartCampSpawner : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject flame;
 
-    private float border = 30f;
-    private float playerOffset = 4f;
+    private readonly float border = 30f;
+    private readonly float playerOffset = 4f;
     
 
     private void Awake()
