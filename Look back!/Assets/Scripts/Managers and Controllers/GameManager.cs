@@ -15,10 +15,14 @@ public class GameManager : MonoBehaviour
     private float flamePower;
 
 
+
     private void Start()
     {
         time = 0;
     }
+
+
+    
 
     private void Update()
     {

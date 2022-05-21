@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     private readonly float dashSpeed = 5f;
     private readonly float dashCoolDown = 5f;
     private readonly float minLiveTime = 20f;
+    private int playersWoods;
     
 
     private Vector2 dashTarget;
@@ -47,6 +48,7 @@ public class Enemy : MonoBehaviour
         liveTime = Random.Range(minLiveTime, minLiveTime * 3);
         enemySprtRender = GetComponent<SpriteRenderer>();
         enemySprtRender.enabled = false;
+        
     }
 
     private void Update()
@@ -176,6 +178,20 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Mouse Lighter") && isVisible == true)
         {
             StartCoroutine(EnemyDisappear());
+        }
+    }
+
+    public int StealWoods()
+    {
+        if (isOnStop)
+        {
+            return 0;
+        }
+        else
+        {
+            playersWoods = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().pickedWoods;
+
+            return Random.Range(1, playersWoods / 2);
         }
     }
 }

@@ -14,14 +14,35 @@ public class MainMenuController : MonoBehaviour
     {
         highScore = Mathf.RoundToInt(PlayerPrefs.GetFloat("HighScore", 0f));
         HighScoreText.text = "Best time: " + highScore.ToString();
+        PlayerPrefs.SetInt("Difficulty", 0);
     }
     public void PlayGame()
     {
-        if (Time.timeScale != 1)
+        if (PlayerPrefs.GetInt("Difficulty") != 0)
         {
-            Time.timeScale = 1f;
+            if (Time.timeScale != 1)
+            {
+                Time.timeScale = 1f;
+            }
+            SceneManager.LoadScene("GamePlay");
         }
-        SceneManager.LoadScene("GamePlay");
+        Debug.Log("Player don't change a difficulty level!");
+    }
 
+    public void SetDifficultyLevel(int level)
+    {
+
+        if (level == 1)
+        {
+            PlayerPrefs.SetInt("Difficulty", 1);
+        }
+        else if (level == 2)
+        {
+            PlayerPrefs.SetInt("Difficulty", 2);
+        }
+        else if (level == 3)
+        {
+            PlayerPrefs.SetInt("Difficulty", 3);
+        }
     }
 }

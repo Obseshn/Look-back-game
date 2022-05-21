@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.CompareTag("Enemy"))
             {
-                pickedWoods -= Random.Range(0, pickedWoods / 2);
+                pickedWoods -= collision.gameObject.GetComponent<Enemy>().StealWoods();
                 Debug.Log("Enemy steal your woods!");
                 stealCDTimer = stealCD;
             }
